@@ -92,7 +92,7 @@ onMounted(()=> {
             </form>
         </section>
 
-        {{todos_asc}}
+
 
         <sectioon class="todo-list">
             <h3>TODO LIST</h3>
