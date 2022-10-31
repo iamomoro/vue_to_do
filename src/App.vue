@@ -91,7 +91,7 @@ onMounted(()=> {
 
                 </div>
 
-               <input type="submit" value="Add todo">
+               <input type="submit" value="Add Task">
             </form>
         </section>
 
