@@ -14,10 +14,20 @@ const todos_asc = computed(() => todos.value.sort((a, b) =>{
 
 const addTodo = () => {
     if (input_content.value.trim() === '' || input_category.value === null) {
-
+        return 
     }
     
+    todos.value.push({
+        content: input_content.value,
+        category: input_category.value,
+        done: false,
+        createdAt: new Date().getTime()
+    })
 }
+watch(todos, (newVal) => {
+    localStorage.setItem('todos', JSON.stringify(newVal))
+}, {deep: true})
+
 
 watch(name, (newVal) => {
     localStorage.setItem('name', newVal)
@@ -25,6 +35,7 @@ watch(name, (newVal) => {
 
 onMounted(()=> {
     name.value = localStorage.getItem('name') || ''
+    todos.value = JSON.parse(localStorage.getItem('todos')) || []
 })
 </script>
 
@@ -75,6 +86,27 @@ onMounted(()=> {
                <input type="submit" value="Add todo">
             </form>
         </section>
+
+        {{todos_asc}}
+
+        <sectioon class="todo-list">
+            <h3>TODO LIST</h3>
+             <div class="list">
+                
+                <div v-for="todo in todos_asc" :class="`todo-item ${todo.done && 'done'}`">
+                    <label>
+                       <input type="checkbox" v-model="todo.done">
+                       <span :class="`bubble ${todo.category == 'work' ? 'work' : 'personal'}`"></span>
+                    </label>
+
+                    <div class="todo-content">
+                        <input type="text" name="" id="" v-model="todo.content">
+                    </div>
+
+                </div>
+
+             </div>
+        </sectioon>
    </main>
 </template>
 
