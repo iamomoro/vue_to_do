@@ -23,6 +23,9 @@ const addTodo = () => {
         done: false,
         createdAt: new Date().getTime()
     })
+
+    input_content.value = ''
+    input_category.value = null
 }
 
 const removeTodo = (todo) => {
@@ -94,7 +97,7 @@ onMounted(()=> {
 
 
 
-        <sectioon class="todo-list">
+        <section class="todo-list">
             <h3>TODO LIST</h3>
              <div class="list">
                 
@@ -115,7 +118,7 @@ onMounted(()=> {
                 </div>
 
              </div>
-        </sectioon>
+        </section>
    </main>
 </template>
 
